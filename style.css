@@ -24,7 +24,7 @@ textarea {
 }
 
 #copyBtn {
-  position: absolute;
+  position: fixed;
   bottom: 1rem;
   right: 1rem;
   background-color: #3b82f6;
