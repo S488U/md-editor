@@ -10,16 +10,16 @@ textarea {
   outline: none;
 }
 
-textarea::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 6px;
 }
 
-textarea::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: #555;
   border-radius: 10px;
 }
 
-textarea::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: #777;
 }
 
