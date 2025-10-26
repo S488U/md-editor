@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Markdown Parser</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Tailwind CSS v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Highlight.js Atom Dark Theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/atom-one-dark.min.css">
+</head>
+
+<body class="h-full w-full bg-[#1e1e1e] text-white flex flex-col lg:flex-row overflow-hidden font-[system-ui,Arial,sans-serif]">
+
+  <!-- Editor -->
+  <div class="w-full lg:w-1/2 flex flex-col items-center p-4 h-[50vh] lg:h-full">
+    <textarea id="markdown" placeholder="Type your Markdown here..."></textarea>
+  </div>
+
+  <!-- Output -->
+  <div id="preview" class="relative w-full lg:w-1/2 p-4 overflow-y-auto h-[50vh] lg:h-full border-t border-gray-800 lg:border-t-0 lg:border-l">
+    <button id="copyBtn">Copy</button>
+    <div id="output" class="markdown-content mt-8 text-gray-100"></div>
+  </div>
+
+  <!-- Drawer Toggle -->
+  <div id="drawerToggle">Saved Work</div>
+
+  <!-- Right Drawer -->
+  <div id="drawer">
+    <h2>Saved Entries</h2>
+    <div id="savedList"></div>
+  </div>
+
+  <!-- Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/lib/common.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.3/dist/purify.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
