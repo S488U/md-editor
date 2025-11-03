@@ -23,19 +23,6 @@ textarea {
   background: #777;
 }
 
-#copyBtn {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-  cursor: pointer;
-  z-index: 10;
-}
-
 code {
   background-color: #f5f5f5;
   color: #d6006b;
@@ -144,10 +131,13 @@ pre {
   top: 10px;
   right: 10px;
   z-index: 100;
-  background: #3b82f6;
   color: white;
-  padding: 5px 10px;
+  padding: 8px 8px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+
+  &:hover {
+    background-color: #2e2e2e;
+  }
 }
