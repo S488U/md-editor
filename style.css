@@ -10,6 +10,31 @@ textarea {
   outline: none;
 }
 
+.copy-container {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  padding: 1.2%;
+  border-color: #555;
+  border-width: 1px 0 0 1px;
+  border-radius: 0.5rem 0;
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #555;
+  }
+
+  &:hover svg {
+    transform: scale(1.1);
+  }
+
+  svg {
+    height: 24px;
+    width: 24px;
+  }
+}
+
 *::-webkit-scrollbar {
   width: 6px;
 }
