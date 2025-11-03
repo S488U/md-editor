@@ -51,7 +51,8 @@ function generateId() {
 }
 
 function loadEntries() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  const entries = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  return entries.sort((a, b) => new Date(b.time) - new Date(a.time));
 }
 
 function saveCurrentEntry(content) {
