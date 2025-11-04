@@ -12,10 +12,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/atom-one-dark.min.css">
 </head>
 
-<body class="h-full w-full bg-[#1e1e1e] text-white flex flex-col lg:flex-row overflow-hidden font-[system-ui,Arial,sans-serif]">
+<body
+  class="h-full w-full bg-[#1e1e1e] text-white flex flex-col lg:flex-row overflow-hidden font-[system-ui,Arial,sans-serif]">
 
   <!-- Editor -->
   <div class="relative w-full lg:w-1/2 flex flex-col items-center p-4 h-[50vh] lg:h-full">
+    <input id="headingText" type="text" placeholder="Enter the title for the markup.." autocomplete="off"
+      autocorrect="off">
     <textarea id="markdown" placeholder="Type your Markdown here..."></textarea>
     <span id="copyBtn" class="copy-container">
       <svg width="20px" height="20px" viewBox="-3.12 -3.12 30.24 30.24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -32,8 +35,10 @@
   </div>
 
   <!-- Output -->
-  <div id="preview" class="w-full lg:w-1/2 p-4 overflow-y-auto h-[50vh] lg:h-full border-t border-gray-800 lg:border-t-0 lg:border-l">
-    <div id="output" class="markdown-content mt-8 text-gray-100"></div>
+  <div id="preview"
+    class="w-full lg:w-1/2 p-4 overflow-y-auto h-[50vh] lg:h-full border-t border-gray-800 lg:border-t-0 lg:border-l">
+    <h1 id="previewHeading" class="preview-heading mt-3 text-gray-200 "></h1>
+    <div id="output" class="markdown-content mt-4 text-gray-100"></div>
   </div>
 
   <!-- Drawer Toggle -->

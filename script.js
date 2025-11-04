@@ -1,4 +1,6 @@
+const headingText = document.getElementById('headingText');
 const textarea = document.getElementById('markdown');
+const previewHeading = document.getElementById('previewHeading');
 const output = document.getElementById('output');
 const copyBtn = document.getElementById('copyBtn');
 const drawer = document.getElementById('drawer');
@@ -29,6 +31,9 @@ function renderMarkdown() {
   const rawHtml = marked.parse(textarea.value);
   const cleanHtml = DOMPurify.sanitize(rawHtml, { USE_PROFILES: { html: true } });
   output.innerHTML = cleanHtml;
+
+  const sanitizedHeading = headingText.value.replace(/[\\/:*?"<>|#^]/g, '');
+  previewHeading.textContent = sanitizedHeading.trim();
 }
 
 // Copy button (JSON friendly)
@@ -72,10 +77,10 @@ function saveCurrentEntry(content) {
   let entries = loadEntries();
 
   if (currentEntryId) {
-    entries = entries.map(e => e.id === currentEntryId ? { ...e, content, time: new Date().toLocaleString() } : e);
+    entries = entries.map(e => e.id === currentEntryId ? { ...e, heading, content, time: new Date().toLocaleString() } : e);
   } else {
     currentEntryId = generateId();
-    entries.push({ id: currentEntryId, content, time: new Date().toLocaleString() });
+    entries.push({ id: currentEntryId, heading, content, time: new Date().toLocaleString() });
   }
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
@@ -84,17 +89,28 @@ function saveCurrentEntry(content) {
 
 function refreshSavedList() {
   const entries = loadEntries();
+  if (entries.length === 0) {
+    savedList.innerHTML = "<p class='text-gray-400 text-sm italic px-2'>No saved notes yet...</p>";
+    return;
+  }
+
   savedList.innerHTML = '';
   entries.forEach(entry => {
     const div = document.createElement('div');
     div.className = 'drawer-item';
     div.innerHTML = `
-      <span>${entry.time}</span>
-      <button data-id="${entry.id}">Delete</button>
+      <div id="loadItems">
+        <strong class='whitespace-nowrap'>${entry.heading || '(No Title)'}</strong>
+        <div class='flex flex-row justify-between w-full text-gray-200 text-sm'>
+          <span>${entry.time}</span>
+          <button data-id="${entry.id}">Delete</button>
+        </div>
+      </div>
     `;
 
     // Click to load into editor
-    div.querySelector('span').onclick = () => {
+    div.querySelector('#loadItems').onclick = () => {
+      headingText.value = entry.heading || '';
       textarea.value = entry.content;
       currentEntryId = entry.id;
       renderMarkdown();
@@ -125,13 +141,25 @@ function deleteEntry(id) {
 
 // Debounce typing auto-save (single entry update)
 let typingTimer;
+headingText.addEventListener('input', () => {
+  // Restrict forbidden characters like Obsidian
+  const forbiddenChars = /[\\/:*?"<>|#^]/g;
+  headingText.value = headingText.value.replace(forbiddenChars, '');
+
+  renderMarkdown();
+  clearTimeout(typingTimer);
+  typingTimer = setTimeout(() => saveCurrentEntry(headingText.value, textarea.value), 1000);
+});
+
 textarea.addEventListener('input', () => {
   renderMarkdown();
   clearTimeout(typingTimer);
-  typingTimer = setTimeout(() => saveCurrentEntry(textarea.value), 1000);
+  typingTimer = setTimeout(() => saveCurrentEntry(headingText.value, textarea.value), 1000);
 });
 
+
 // Do NOT auto-load anything on refresh
+headingText.value = '';
 textarea.value = '';
 renderMarkdown();
 refreshSavedList();
