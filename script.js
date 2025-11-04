@@ -130,11 +130,12 @@ function deleteEntry(id) {
   let entries = loadEntries().filter(e => e.id !== id);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
 
-  if (currentEntryId === id) {
-    textarea.value = '';
-    currentEntryId = null;
-    renderMarkdown();
-  }
+    if (currentEntryId === id) {
+      headingText.value = '';
+      textarea.value = '';
+      currentEntryId = null;
+      renderMarkdown();
+    }
 
   refreshSavedList();
 }
