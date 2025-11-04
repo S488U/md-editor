@@ -6,6 +6,7 @@ const copyBtn = document.getElementById('copyBtn');
 const drawer = document.getElementById('drawer');
 const drawerToggle = document.getElementById('drawerToggle');
 const savedList = document.getElementById('savedList');
+const newPage = document.getElementById('newPage');
 
 marked.setOptions({
   gfm: true,
@@ -127,8 +128,10 @@ function refreshSavedList() {
 }
 
 function deleteEntry(id) {
-  let entries = loadEntries().filter(e => e.id !== id);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  const confirmDelete = confirm("Are you sure you want to delete this?");
+  if (confirmDelete) {
+    let entries = loadEntries().filter(e => e.id !== id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
 
     if (currentEntryId === id) {
       headingText.value = '';
@@ -137,7 +140,10 @@ function deleteEntry(id) {
       renderMarkdown();
     }
 
-  refreshSavedList();
+    refreshSavedList();
+  } else {
+    console.log("Cancelled!");
+  }
 }
 
 // Debounce typing auto-save (single entry update)
@@ -167,3 +173,7 @@ refreshSavedList();
 
 // Drawer toggle
 drawerToggle.addEventListener('click', () => drawer.classList.toggle('show'));
+
+newPage.addEventListener('click', () => {
+  window.reload();
+})
