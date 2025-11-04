@@ -9,7 +9,7 @@ input {
   outline: none;
 }
 
-input  {
+input {
   font-weight: medium;
   text-transform: capitalize;
 }
@@ -167,18 +167,22 @@ pre {
   cursor: pointer;
 }
 
-#drawerToggle {
+#shortNav {
   position: fixed;
   top: 10px;
   right: 10px;
   z-index: 100;
-  color: white;
-  padding: 8px 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
 
-  &:hover {
+  #newPage,
+  #drawerToggle {
+    padding: 8px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  #newPage:hover,
+  #drawerToggle:hover {
     background-color: #2e2e2e;
   }
 }
