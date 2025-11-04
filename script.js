@@ -6,7 +6,6 @@ const copyBtn = document.getElementById('copyBtn');
 const drawer = document.getElementById('drawer');
 const drawerToggle = document.getElementById('drawerToggle');
 const savedList = document.getElementById('savedList');
-const newPage = document.getElementById('newPage');
 
 marked.setOptions({
   gfm: true,
@@ -72,8 +71,8 @@ function loadEntries() {
   return entries.sort((a, b) => new Date(b.time) - new Date(a.time));
 }
 
-function saveCurrentEntry(content) {
-  if (!content.trim()) return;
+function saveCurrentEntry(heading, content) {
+  if (!heading.trim() && !content.trim()) return;
 
   let entries = loadEntries();
 
@@ -102,7 +101,7 @@ function refreshSavedList() {
     div.innerHTML = `
       <div id="loadItems">
         <strong class='whitespace-nowrap'>${entry.heading || '(No Title)'}</strong>
-        <div class='flex flex-row justify-between w-full text-gray-200 text-sm'>
+        <div class='flex flex-row justify-between items-center w-full text-gray-200 text-sm'>
           <span>${entry.time}</span>
           <button data-id="${entry.id}">Delete</button>
         </div>
@@ -128,8 +127,7 @@ function refreshSavedList() {
 }
 
 function deleteEntry(id) {
-  const confirmDelete = confirm("Are you sure you want to delete this?");
-  if (confirmDelete) {
+  if (confirm("Are you sure you want to delete this?")) {
     let entries = loadEntries().filter(e => e.id !== id);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
 
@@ -142,7 +140,7 @@ function deleteEntry(id) {
 
     refreshSavedList();
   } else {
-    console.log("Cancelled!");
+    console.log("Deletion cancelled by User.")
   }
 }
 
@@ -173,7 +171,3 @@ refreshSavedList();
 
 // Drawer toggle
 drawerToggle.addEventListener('click', () => drawer.classList.toggle('show'));
-
-newPage.addEventListener('click', () => {
-  window.reload();
-})
