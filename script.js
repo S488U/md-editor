@@ -6,7 +6,7 @@ const copyBtn = document.getElementById('copyBtn');
 const drawer = document.getElementById('drawer');
 const drawerToggle = document.getElementById('drawerToggle');
 const savedList = document.getElementById('savedList');
-const newPage = document.getElementById('newPage');
+const newPage = document.querySelectorAll('.newPage');
 
 marked.setOptions({
   gfm: true,
@@ -173,7 +173,10 @@ refreshSavedList();
 // Drawer toggle
 drawerToggle.addEventListener('click', () => drawer.classList.toggle('show'));
 
-newPage.addEventListener("click", () => {
-  saveCurrentEntry(headingText.value, textarea.value);
-  window.location.reload();
-});
+// New page button
+newPage.forEach(nPage => {
+  nPage.addEventListener("click", () => {
+    saveCurrentEntry(headingText.value, textarea.value);
+    window.location.reload(); 
+  });
+})

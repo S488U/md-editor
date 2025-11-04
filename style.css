@@ -23,17 +23,18 @@ textarea {
 
 .copy-container {
   position: absolute;
-  bottom: 16px;
-  right: 16px;
   padding: 1.2%;
   border-color: #555;
   border-width: 1px 0 0 1px;
-  border-radius: 0.5rem 0;
   transition: all 150ms ease-in-out;
   cursor: pointer;
+  bottom: 16px;
+  right: 16px;
+  border-radius: 0.5rem 0;
 
   &:hover {
     background-color: #555;
+    border-radius: 0.5rem 0
   }
 
   &:hover svg {
@@ -44,6 +45,10 @@ textarea {
     height: 24px;
     width: 24px;
   }
+}
+
+.newPage-container {
+  display: none;
 }
 
 *::-webkit-scrollbar {
@@ -184,5 +189,41 @@ pre {
   #newPage:hover,
   #drawerToggle:hover {
     background-color: #2e2e2e;
+  }
+}
+
+@media (max-width: 768px) {
+  #newPage {
+    display: none;
+  }
+
+  .copy-container {
+    border-radius: 0;
+  }
+
+  .newPage-container {
+    display: block;
+    border-radius: 0.5rem 0;
+    bottom: 16px;
+    right: 49px;
+    position: absolute;
+    padding: 1.2%;
+    border-color: #555;
+    border-width: 1px 0 0 1px;
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #555;
+    }
+
+    &:hover svg {
+      transform: scale(1.1);
+    }
+
+    svg {
+      height: 24px;
+      width: 24px;
+    }
   }
 }
