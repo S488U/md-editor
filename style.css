@@ -199,6 +199,10 @@ pre {
 
   .copy-container {
     border-radius: 0;
+
+    &:hover {
+      border-radius: 0;
+    }
   }
 
   .newPage-container {
