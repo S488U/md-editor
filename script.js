@@ -39,6 +39,7 @@ function renderMarkdown() {
 
 // Copy button (JSON friendly)
 copyBtn.addEventListener('click', () => {
+  if (!textarea.value.trim()) return;
   const minimizedMarkdown = textarea.value
     .split('\n')
     .map(line => line.replace(/\s+$/g, ''))
@@ -177,6 +178,6 @@ drawerToggle.addEventListener('click', () => drawer.classList.toggle('show'));
 newPage.forEach(nPage => {
   nPage.addEventListener("click", () => {
     saveCurrentEntry(headingText.value, textarea.value);
-    window.location.reload(); 
+    window.location.reload();
   });
 })
