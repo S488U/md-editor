@@ -135,6 +135,9 @@ textarea {
   }
 }
 
+.markdown-content hr {
+  border-color: #cfcfcf;
+}
 
 .markdown-content p {
   margin-bottom: 0.75rem;
