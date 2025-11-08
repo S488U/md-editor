@@ -89,14 +89,52 @@ textarea {
   margin-bottom: 0;
 }
 
-.markdown-content h1,
-.markdown-content h2,
-.markdown-content h3,
-.markdown-content h4 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+
+
+.markdown-content {
+  h1 {
+    font-size: 2rem;
+    /* 36px */
+    margin: 1rem 0 0.5rem 0;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    /* 30px */
+    margin: 0.90rem 0 0.5rem 0;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    /* 24px */
+    margin: 0.80rem 0 0.5rem 0;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    /* 20px */
+    margin: 0.70rem 0 0.5rem 0;
+    font-weight: bold;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+    /* 18px */
+    margin: 0.60rem 0 0.5rem 0;
+    font-weight: bold;
+  }
+
+  h6 {
+    font-size: 1rem;
+    /* 16px */
+    margin: 0.50rem 0 0.5rem 0;
+    font-weight: bold;
+  }
 }
+
 
 .markdown-content p {
   margin-bottom: 0.75rem;
