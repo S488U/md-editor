@@ -33,6 +33,8 @@ function renderMarkdown() {
   const cleanHtml = DOMPurify.sanitize(rawHtml, { USE_PROFILES: { html: true } });
   output.innerHTML = cleanHtml;
 
+  output.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+
   const sanitizedHeading = headingText.value.replace(/[\\/:*?"<>|#^]/g, '');
   previewHeading.textContent = sanitizedHeading.trim();
 }

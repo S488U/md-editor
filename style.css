@@ -64,7 +64,7 @@ textarea {
   background: #777;
 }
 
-code {
+.markdown-content code:not(pre > code) {
   background-color: #f5f5f5;
   color: #d6006b;
   padding: 0.2em 0.4em;
@@ -73,11 +73,9 @@ code {
   font-family: monospace;
 }
 
-pre {
+.markdown-content pre {
   overflow-x: auto;
   background: #282c34;
-  color: #fff;
-  padding: 10px;
   border-radius: 6px;
   margin-top: 8px;
   font-size: 0.9rem;
